@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one :purchase_record
+  # has_one :purchase_record
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -19,5 +19,5 @@ class Item < ApplicationRecord
   validates :shipping_cost_id, numericality: { other_than: 1 }
   validates :prefecture_id, numericality: { other_than: 1 }
   validates :shipping_date_id, numericality: { other_than: 1 }
-  validates :price, presence: true, numericality: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+  validates :price, presence: true, numericality: { only_integer: true, in: 300..9_999_999 }
 end
